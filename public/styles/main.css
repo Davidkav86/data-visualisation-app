@@ -1,0 +1,38 @@
+/* From Todo app tutorial*/
+html                    { overflow-y:scroll; }
+body                    { padding-top:50px; }
+#todo-list              { margin-bottom:30px; }
+
+
+/* From d3/angular tutorial */
+.axis path,
+.axis line{
+  fill: none;
+  stroke:black;
+  shape-rendering:crispEdge;
+  padding:5px;
+}
+
+.axis text{
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+h1{
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.area{
+	fill: steelblue;
+}
+
+.graphs{
+  border-style: solid;
+}
+
+.tick
+{
+  stroke-dasharray: 1, 2;
+}

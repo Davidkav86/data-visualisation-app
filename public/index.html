@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="myApp">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Data Visualisation</title>
+
+    <!-- Styles -->
+    <!-- Include Bootstrap-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- Include main.css file-->
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    
+
+    <!-- SPELLS -->
+    <script type="text/javascript" src="//d3js.org/d3.v3.min.js" charset="utf-8"></script><!-- load d3 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><!-- load angular -->
+    <script src="js/controllers/main.js"></script> <!-- load up our main controller -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+    <!-- Directives -->
+    <script src="/js/directives/scatterPlotDirective.js"></script> 
+    <script src="/js/directives/areaChartDirective.js"></script>
+
+</head> 
+
+<!-- SET THE Controller-->
+<body>
+    <div class="container" ng-controller="controller">
+
+        <!-- Header -->
+        <div class="jumbotron text-center">
+            <h1>Application <span class="label lable-info"></span><h1>
+        </div>
+
+        <div class="jumbotron text-center">
+            <h1>{{test}} <span class="label lable-info"></span><h1>
+        </div>
+
+    </div>
+    <!-- Scatter Plot-->
+    <div class="container" ng-controller="controller">  
+        <div scatter-plot chart-data="salesData"></div>
+    </div>
+    <!-- Area Chart-->
+    <div class="container pull-right" ng-controller="controller">  
+        <div area-chart></div>
+    </div>
+
+
+</body>
+</html>
