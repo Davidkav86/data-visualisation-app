@@ -1,10 +1,101 @@
-/* From Todo app tutorial*/
-html                    { overflow-y:scroll; }
-body                    { padding-top:50px; }
-#todo-list              { margin-bottom:30px; }
 
 
-/* From d3/angular tutorial */
+body {
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  background-color: black;
+  overflow:scroll;
+}
+
+button {
+  width:23px;
+  height: 23px;
+  background-color: ;
+}
+
+i {
+  margin:auto;
+  height:auto;
+  width:auto;
+}
+
+/* Charts */
+
+.fullLength {
+  width: 1200px;
+  height: 300px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border: solid;
+  border-color: black;
+  border-width: 3px;
+  margin:5px;
+  background-color: #ffffff;
+}
+
+.fullLength-noBorder {
+  width: 1200px;
+  height: 300px;
+  margin-bottom: 5px;
+}
+
+.fullLength-bar {
+  background-color: #4dd2ff;
+  width:auto;
+  height: 30px;
+}
+
+.halfLength-bar {
+  background-color: #4dd2ff;
+  width:auto;
+  height: 30px;
+}
+
+.halfLength {
+  width: 50%;
+  height: 100%;
+  border: solid;
+  border-color: black;
+  border-width: 2px;
+  float:left;
+}
+
+/* Progress Bar  */
+  
+  .background:  {
+    fill: #DFEAFD;
+  }
+  
+  .foreground {
+    fill: black;
+  }
+
+  .foregroundRed {
+    fill: red;
+  }
+  
+  .progText {
+    font-family: 'Georgia' sans-serif;
+    font-size: 60px;
+    fill: black;
+  }
+
+  .progTextRed {
+    font-family: 'Georgia' sans-serif;
+    font-size: 60px;
+    fill: red;
+  }
+  
+  .progText2 {
+    font-family: 'Georgia' sans-serif;
+    font-size: 20px;
+    fill: black;
+  }
+
+
+/* Area Chart & scatter plot */
 .axis path,
 .axis line{
   fill: none;
@@ -21,7 +112,7 @@ body                    { padding-top:50px; }
 h1{
   font-family: sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  
 }
 
 .area{
@@ -32,7 +123,90 @@ h1{
   border-style: solid;
 }
 
-.tick
-{
+.tick{
   stroke-dasharray: 1, 2;
 }
+
+/*---------- Nav bar ------------*/
+ 
+a {
+ text-decoration: none;
+ color:#00a5cc;
+}
+
+li  {
+ list-style-type:none;
+ list-style: none;
+ }
+
+nav { 
+  width:80px;
+  text-align:center;
+  background-color: #264d00;
+}
+
+nav  a {
+  width: auto;
+ display:block;
+ padding: 10px 0px;
+ border-bottom: 1px solid black;
+ color:black;
+}
+
+nav a:hover {
+ background:#6A93B0; color : BLACK;
+}
+
+nav li:last-child a {
+ border-bottom:none;
+}
+
+.menu {
+  top:0px;
+  margin-top: 40px;
+ width: 100px;
+ /*height:100%;*/
+ position:fixed;
+ background:#4dd2ff;
+ left:-240px;
+ transition: all .3s ease-in-out;
+ -webkit-transition: all .3s ease-in-out;
+ -moz-transition: all .3s ease-in-out;
+ -ms-transition: all .3s ease-in-out;
+ -o-transition: all .3s ease-in-out;
+}
+
+.menu-icon {
+  top:0;
+  left: 0;
+  position: fixed;
+ padding:10px 18px;
+ background:#4dd2ff;
+ color:black;
+ cursor:pointer;
+ float:left;
+ /*margin-top:4px;*/
+ /*border-radius:5px;*/
+}
+
+#menuToggle {
+ display:none;
+}
+
+#menuToggle:checked  ~ .menu {
+ top:0;
+ position:fixed;
+ left:0px;
+}﻿
+ 
+
+
+
+
+
+
+
+
+
+
+

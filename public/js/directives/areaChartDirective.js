@@ -5,7 +5,7 @@ angular.module('appController')
 
       var link = function(scope, elem, attrs){
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        var margin = {top: 60, right: 50, bottom: 20, left: 50},
         width = 1200 - margin.left - margin.right,
     		height = 300 - margin.top - margin.bottom;
 
@@ -38,7 +38,7 @@ angular.module('appController')
             return y(d.close); 
           });
 
-			var svg = d3.select("body").append("svg")
+			var svg = d3.select("div.fullLength").append("svg")
     			.attr("width", width + margin.left + margin.right)
     			.attr("height", height + margin.top + margin.bottom)
   				.append("g")

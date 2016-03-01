@@ -1,0 +1,8 @@
+{ 	"index" : {
+		"rowCount" : 2,
+		"rows" : [
+			{"id" : 1, "columns" : 2, "charts" : ["scatterPlot","progressBar"]},
+			{"id" : 2, "columns" : 2, "charts" : ["areaChart"]}
+		]
+	} 
+}

@@ -1,3 +1,3 @@
 //public/core.js
 
-var myApp = angular.module('myApp',['appController']);
+var myApp = angular.module('myApp',['appController','dragController']);

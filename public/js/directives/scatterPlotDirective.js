@@ -1,17 +1,17 @@
-// File : /js/directives/linechartDirective.js
+// File : /js/directives/scatterPlotDirective.js
 
 angular.module('appController')  
     .directive('scatterPlot', function($window){
 
         var link = function(scope, elem, attrs){
 
-            var w = 500;
-            var h = 300;
+            var w = 595;
+            var h = 260;
             var padding = 30;
-            var border=5;
-            var bordercolor='black';
+            // var border=5;
+            // var bordercolor='black';
             var dataset = [
-                            [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
+                            [480, 90], [250, 50], [100, 33], [330, 95],
                             [410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
                           ];
 
@@ -52,20 +52,20 @@ angular.module('appController')
 
             // -------------------------
 
-            var svg = d3.select("body")
+            var svg = d3.select("body").select("div.halfLength")
             .append("svg")
             .attr("width", w)
-            .attr("height", h)
-            .attr("border",border);
+            .attr("height", h);
+            // .attr("border",border);
 
-            var borderPath = svg.append("rect")
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("height", h)
-                .attr("width", w)
-                .style("stroke", bordercolor)
-                .style("fill", "none")
-                .style("stroke-width", border);
+            // var borderPath = svg.append("rect")
+            //     .attr("x", 0)
+            //     .attr("y", 0)
+            //     .attr("height", h)
+            //     .attr("width", w)
+            //     .style("stroke", bordercolor)
+            //     .style("fill", "none")
+            //     .style("stroke-width", border);
 
             svg.selectAll("circle")
             .data(dataset)
