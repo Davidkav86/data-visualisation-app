@@ -1,4 +1,4 @@
-{ 	"index" : {
+{ 	"data" : {
 		"rowCount" : 2,
 		"rows" : [
 			{"id" : 1, "columns" : 2, "charts" : ["scatter-plot","progress-bar"]},
