@@ -9,6 +9,11 @@ body {
   overflow:scroll;
 }
 
+h1 {
+  color: #ffffff;
+}
+
+
 button {
   width:23px;
   height: 23px;

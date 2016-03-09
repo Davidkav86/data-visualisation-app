@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="myApp">
+<!-- <html ng-app="myApp"> -->
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -26,13 +26,14 @@
     <script src="js/controllers/main.js"></script> <!-- load up our main controller -->
     <script src="js/controllers/dndController.js"></script>
     <script src="js/core.js"></script> <!-- load our main application -->
+
+    <!-- Services -->
+    <!-- <script src="/js/services/dataPersistence.js"></script>  -->
     <!-- Directives -->
     <script src="js/directives/populateHomePage.js"></script>
     <script src="/js/directives/scatterPlotDirective.js"></script> 
     <script src="/js/directives/areaChartDirective.js"></script>
     <script src="/js/directives/progressBarDirective.js"></script>
-    <!-- Service -->
-    <script src="/js/services/dataPersistence.js"></script> 
 
 </head> 
 
@@ -66,10 +67,19 @@
         </div>
     </div> -->
 
-    <!-- <div class="container" ng-controller="controller"> -->
+    <div class="container" ng-controller="controller"></div>
     
-    <div populate-home-page></div>
+    <div populate-home-page ng-controller="controller" ng-repeat="element in elements" elements="element"></div>
 
+    <div class="jumbotron text-center">
+        <h1>Test = {{count}}</h1>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="button1()">Add</button>
+    
+
+    <div id="container">
+        <populate-home-page ng-repeat="element in elements" elements="element"></populate-home-page>
+    </div>
     <!-- </div> -->
  
      <!-- <div class="fullLength" ng-controller="controller">  
@@ -112,7 +122,7 @@
         <h1>hshs</h1>
     </div>
  -->
-    <!-- Area Chart
+    <!-- Area Chart -->
     <!-- <div class="fullLength" ng-controller="controller">  
         <div class="fullLength-bar"><div>
     </div>
@@ -129,6 +139,10 @@
     <!-- <div id="container" ng-controller="controller">
     <content-directive ng-repeat="item in content" content="item"></content-directive>
     </div> -->
-
+    <script>
+    angular.element(document).ready(function() {
+      angular.bootstrap(document, ['myApp']);
+    });
+  </script>
 </body>
 </html>

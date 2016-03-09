@@ -1,19 +1,14 @@
 // /js/services/dataPersistence
 
-var app = angular.module('appController',[])
+var app = angular.module('appController', []);
+	// app.factory('jsonFactory2', function($http){
+	// 	console.log("all the way here")
+	// 	var getData = function() {
+	// 		return $http.get('json/index.json')
+ //   								.then(function(response) {
+ //   									return response.data;
+ //   								})
+	// 	}
 
-	.factory('dataPersistence', function($http){
-
-	return{
-		get : function($http){
-			$http.get('json/index.json')
-   				.success(function(result) {
-   					return result;
-
-   				})
-   				.error(function(data) {
-                	        console.log('Error: ' + data);
-            	});
-		}
-	}	
-});
+	// 	return { getData: getData };
+	// });
