@@ -7,7 +7,7 @@ angular.module('appController')
         var halfTemplate = '<div class="fullLength" ng-controller="controller"><div class="halfLength"><div class="halfLength-bar"></div><div scatter-plot chart-data="salesData"></div></div><div class="halfLength" id="progress-bar"><div class="halfLength-bar"><input id="inputVal" type="text" value="0.75" style="width:35px;"/><button id="reload" style="width:35px;">Set</button></div><div progress-bar></div></div></div>';
 
 
-		var fullTemplateVars = '<div class="fullLength" id={{element.charts[0]}} ng-controller="controller"><div class="fullLength-bar"><button class="pull-right" type="submit"><i class="fa fa-close"></i></button></div><div{{element.charts[0]}}></div></div>';
+		var fullTemplateVars = '<div class="fullLength" id={{element.charts[0]}} ng-controller="controller"><div class="fullLength-bar"><button class="pull-right" type="submit"><i class="fa fa-close"></i></button></div><div {{element.charts[0]}}></div></div>';
         var halfTemplateVars = '<div class="fullLength" ng-controller="controller"><div class="halfLength"><div class="halfLength-bar"></div><div scatter-plot chart-data="salesData"></div></div><div class="halfLength" id="progress-bar"><div class="halfLength-bar"><input id="inputVal" type="text" value="0.75" style="width:35px;"/><button id="reload" style="width:35px;">Set</button></div><div progress-bar></div></div></div>';
         
         var deferred = $q.defer();
@@ -51,8 +51,9 @@ angular.module('appController')
 			// 	scope.elements = elementList;
 
 				console.log("element list: ", scope.elements)
+				console.log("Charts: ", scope.elements[count.get()].charts[0])
 
-				element.html(getTemplate(scope.elements[count.get()].columns));
+				element.html(getTemplate(scope.elements[count.get()].columns)).show();
 				count.add();
 
              	$compile(element.contents())(scope);

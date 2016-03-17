@@ -133,7 +133,10 @@ var app = angular.module('appController', []);
    								.then(function(response) {
    									return response.data;
    								})
-				}		
+				},
+			add : function() {
+				
+			}		
 		}
 	})
 
