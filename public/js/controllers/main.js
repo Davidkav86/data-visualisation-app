@@ -2,29 +2,33 @@
     
 var app = angular.module('appController', []);
 
-	app.controller('controller', function($scope, $http, $q, jsonAPI){
+	app.controller('controller', function($scope, $http, $q, $route, API){
 		
 
-        	// retrieve the data that is used to load the page 		
-    		var myDataPromise = jsonAPI.get();
-    		console.log("Outside")
-    		myDataPromise.then(function(result) {  
+        // retrieve the data that is used to load the page 		
+    	var render = API.get();
+    	render.then(function(result) {  
 
        				// this is only run after get() resolves
-       				$scope.data = result;
-       				console.log("Promise eg: " + $scope.data.rowCount);
+       				// $scope.data = result;
+       				// console.log("Promise eg: " + $scope.data.rowCount);
        				// test to ensure function works
-       				$scope.count = $scope.data.rowCount;
+       				// $scope.count = $scope.data.rowCount;
        				// pass the rows into elements var
-       				$scope.elements = result.rows;
-       				console.log("Elements instantiated with json ");
-    			});
+       			$scope.elements = result;
+       			console.log("Rows: ", result);
+    	});
 
+    	$scope.deleteColumn = function(id){
+    		API.delete(id);
+    		$route.reload
+    	}
 
-		$scope.button1 = function(){
-			
-			$scope.count = $scope.data.rows[0].id;
-		}
+		$scope.addRow = function(){
+			var column = {columns : 1, charts: ["area-chart"]};
+			API.create(column)
+			//$route.reload();
+		} 
 
 		$scope.content = []; 
 		
@@ -34,6 +38,48 @@ var app = angular.module('appController', []);
     	};
     });
 
+    // Factory to manipulate the json file that stores the data that populates the page
+	app.factory('API', function($http, $route){
+		return {
+		 	get : function() {
+					return $http.get('/api/columns')
+   								.then(function(response) {
+   									return response.data;
+   								})
+				},
+			create : function(column) {
+					return $http.post('/api/columns', column)
+            			.success(function(data) {
+            				$route.reload();
+            			})
+            			.error(function(data) {
+                			console.log('Error: ' + data);
+            			});
+			},
+			delete : function(id) {
+				return $http.delete('/api/columns/' + id)
+                        .success(function(data) {
+                              console.log("success bitch")
+                              $route.reload();  
+                        })
+                        .error(function(data) {
+                                console.log('Error: ' + data);
+                        });
+			}		
+		}
+	})
+
+	app.factory('counter', function(){
+		var counter = 0;
+		return {
+		 	get : function() {
+					return counter 
+				},
+			add : function() {
+				counter += 1;
+			}		
+		}
+	})
 		// $http.get('json/index.json')
   //  			.success(function(result) {
   //  				// $scope.t1000 = data.index.rowCount;
@@ -125,32 +171,6 @@ var app = angular.module('appController', []);
 	// 		}
 	// 	}
 	// })
-
-	app.factory('jsonAPI', function($http){
-		return {
-		 	get : function() {
-					return $http.get('json/index.json')
-   								.then(function(response) {
-   									return response.data;
-   								})
-				},
-			add : function() {
-				
-			}		
-		}
-	})
-
-	app.factory('counter', function(){
-		var counter = 0;
-		return {
-		 	get : function() {
-					return counter 
-				},
-			add : function() {
-				counter += 1;
-			}		
-		}
-	})
 
 // 	app.service('jsonService',function($http){
 // 		var promise = 0;

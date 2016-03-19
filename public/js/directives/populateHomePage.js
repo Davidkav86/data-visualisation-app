@@ -1,9 +1,9 @@
 //public/js/populateHomePage.js
 
 angular.module('appController')
-	.directive('populateHomePage', function($compile, $q, jsonAPI, counter){
+	.directive('populateHomePage', function($compile, $q, API, counter){
 
-		var fullTemplate = '<div class="fullLength" id="area-chart" ng-controller="controller"><div class="fullLength-bar"><button class="pull-right" type="submit"><i class="fa fa-close"></i></button></div><div area-chart></div></div>';
+		var fullTemplate = '<div class="fullLength" id="area-chart" ng-controller="controller"><div class="fullLength-bar"><button class="pull-right" type="submit" ng-click="deleteColumn(element._id)"><i class="fa fa-close"></i></button></div><div area-chart></div></div>';
         var halfTemplate = '<div class="fullLength" ng-controller="controller"><div class="halfLength"><div class="halfLength-bar"></div><div scatter-plot chart-data="salesData"></div></div><div class="halfLength" id="progress-bar"><div class="halfLength-bar"><input id="inputVal" type="text" value="0.75" style="width:35px;"/><button id="reload" style="width:35px;">Set</button></div><div progress-bar></div></div></div>';
 
 
@@ -13,8 +13,8 @@ angular.module('appController')
         var deferred = $q.defer();
 
          function getData(){
-			var myDataPromise = jsonAPI.get();
-    		myDataPromise.then(function(result) {  
+			var apiCall = API.get();
+    		apiCall.then(function(result) {  
     			deferred.resolve(result);		
    			});
    			return deferred.promise
@@ -25,11 +25,11 @@ angular.module('appController')
         	console.log("Inside")
 
         	switch(templateType) {
-            	case 1:
+            	case "1":
             		console.log("Case 1")
             	    template = fullTemplate;
             	    break;
-            	case 2:
+            	case "2":
             		console.log("Case 2")
             	    template = halfTemplate;
             	    break;
@@ -42,6 +42,7 @@ angular.module('appController')
 		var link = function(scope, element, attrs){
 
 			var data = getData();
+            console.log("PPPPGGGGGG", data)
 			var count = counter;
 
 			// data.then(function(result){
