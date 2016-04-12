@@ -14,15 +14,16 @@ var app = angular.module('appController')
                                                 '<p class="input-group">' +
                                                     '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />' +
                                                     '<span class="input-group-btn">' +
-                                                        '<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>' +
+                                                        '<button type="button" class="calBtn" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>' +
                                                     '</span>' +
                                                 '</p>' +
                                             '</div>' +
+                                            
                                             '<div class="col-md-6">' +
                                                       '<p class="input-group">' +
-                                                        '<input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />' +
+                                                        '<input type="text" class="form-control" uib-datepicker-popup ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />' +
                                                         '<span class="input-group-btn">' +
-                                                          '<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>' +
+                                                          '<button type="button" class="calBtn" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>' +
                                                         '</span>' +
                                                       '</p>' +
                                                     '</div><br>' +
@@ -30,10 +31,13 @@ var app = angular.module('appController')
                                                   '<div class="row">' +
                                                     '<div class="col-md-6">' +
                                                       '<label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>' +
-                                                    '</div> <br></br>' +
+                                                    '</div> <br></br><br>' +
                                                     '<div class="col-md-6">' +
                                                       '<button type="button" class="btn clearButton" ng-click="clear()">Clear</button>' +
                                                     '</div>' +
+                                                    '<div class="col-md-6">'+
+                                                        '<button type="button" class="subButton" ng-click="setDates(dt,dt2)">Submit</button>'+
+                                                    '</div>'+
                                                   '</div>' +
                                             '</modal>'+
                                     '</div>'+
@@ -41,78 +45,9 @@ var app = angular.module('appController')
                                 '</div>'+
                                 '<div area-chart></div>'+
                             '</div>';
-
-        // <div class="fullLength" id="area-chart">
-        //     <div class="fullLength-bar">
-        //         <div ng-controller="date_picker">
-        //             <button class="pull-left fa fa-search dateButton" type="submit" ng-click="datePopup()"></button>
-        //         </div>
-        //         <button class="pull-right dateButton" type="submit" ng-click="deleteColumn(element._id)"><i class="fa fa-remove"></i></button>
-        //     </div>
-        //         <div area-chart></div>
-        // </div>
-  //       '<modal title="Login form" visible="showModal">' +
-  //           '<form role="form">' +
-  //               '<div class="form-group">' +
-  //                   '<label for="email">Email address</label>' +
-  //                   '<input type="email" class="form-control" id="email" placeholder="Enter email" />' +
-  //               '</div>' +
-  //               '<div class="form-group">' +
-  //                   '<label for="password">Password</label>' +
-  //                   '<input type="password" class="form-control" id="password" placeholder="Password" />' +
-  //               '</div>' +
-  //               '<button type="submit" class="btn btn-default">Submit</button>' +
-  //           '</form>' +
-  //       '</modal>'
-
-  // '<modal title="Search Historical Data" visible="showModal">' +
-  //   '<div class="row">'
-  //     '<div class="col-md-6">'
-  //       '<p class="input-group">' +
-  //         '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />' +
-  //         '<span class="input-group-btn">' +
-  //           '<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>' +
-  //         '</span>' +
-  //       '</p>' +
-  //     '</div>' +
-
-  //     '<div class="col-md-6">' +
-  //       '<p class="input-group">' +
-  //         '<input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />' +
-  //         '<span class="input-group-btn">' +
-  //           '<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>' +
-  //         '</span>' +
-  //       '</p>' +
-  //     '</div><br>' +
-  //   '</div>' +
-  //   '<div class="row">' +
-  //     '<div class="col-md-6">' +
-  //       '<label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>' +
-  //     '</div> <br></br>' +
-  //     '<div class="col-md-6">' +
-  //       '<button type="button" class="btn clearButton" ng-click="clear()">Clear</button>' +
-  //     '</div>' +
-  //   '</div>' +
-  // '</modal>'
-
-        // <modal title="Login form" visible="showModal">
-        //     <form role="form">
-        //         <div class="form-group">
-        //             <label for="email">Email address</label>
-        //             <input type="email" class="form-control" id="email" placeholder="Enter email" />
-        //         </div>
-        //         <div class="form-group">
-        //             <label for="password">Password</label>
-        //             <input type="password" class="form-control" id="password" placeholder="Password" />
-        //         </div>
-        //         <button type="submit" class="btn btn-default">Submit</button>
-        //     </form>
-        // </modal>
-
-
         var halfTemplate = '<div class="fullLength"><div class="halfLength"><div class="halfLength-bar"></div><div scatter-plot chart-data="salesData"></div></div><div class="halfLength" id="progress-bar"><div class="halfLength-bar"><input id="inputVal" type="text" value="0.75" style="width:35px;"/><button id="reload" style="width:35px;">Set</button></div><div progress-bar></div></div></div>';
 
-        // Templates for dynamically render charts from values passed in, does not curently work
+        // Templates for dynamically render charts from values passed in, does not work currently
 		var fullTemplateVars = '<div class="fullLength" id={{element.charts[0]}} ng-controller="controller"><div class="fullLength-bar"><button class="pull-right" type="submit" ng-click="deleteColumn(element._id)"><i class="fa fa-close"></i></button></div> <span {{element.charts[0]}} ></span></div>';
         var halfTemplateVars = '<div class="fullLength" ng-controller="controller"><div class="halfLength"><div class="halfLength-bar"></div><div scatter-plot chart-data="salesData"></div></div><div class="halfLength" id="progress-bar"><div class="halfLength-bar"><input id="inputVal" type="text" value="0.75" style="width:35px;"/><button id="reload" style="width:35px;">Set</button></div><div progress-bar></div></div></div>';
         

@@ -2,26 +2,31 @@
 
 var datePicker = angular.module('datePicker', [])
 
-	datePicker.controller('date_picker', function($scope){
+	datePicker.controller('date_picker', function($scope, mysqlAPI){
 
-		$scope.datePopup = function() {
-			alert("!!!!!!!!");
-		}
-
-		$scope.dropPopup = function() {
-
-		}
+		// var chap = 'select meter_id, meter_reading_time, real_energy_consumption from meters_data where meter_reading_time between "2015-02-02 10:00:00" and "2015-05-02 10:00:00" and meter_id=82;';
+		// var test = mysqlAPI.get(chap);
+		// test.then(function(result) {
+		// 	console.log("Result", result[0].meter_id);
+		// });
+		
 
 		$scope.showModal = false;
     	$scope.toggleModal = function(){
         	$scope.showModal = !$scope.showModal;
     	};
 
+		$scope.setDates = function(dt, dt2, timeFrom, timeTo){
+			console.log("Date 1", dt);
+			console.log("Date 2", dt2);
+			console.log("From", timeFrom);
+			console.log("To", timeTo);
 
-		// ------  Date Picker --------------
+		}
 
 		$scope.today = function() {
     		$scope.dt = new Date();
+    		$scope.dt2 = new Date();
   		};
   		$scope.today();
 
@@ -31,6 +36,7 @@ var datePicker = angular.module('datePicker', [])
 
   		$scope.clear = function() {
    		 $scope.dt = null;
+   		 $scope.dt2 = null;
   		};
 
   		$scope.inlineOptions = {
@@ -73,7 +79,11 @@ var datePicker = angular.module('datePicker', [])
   		  $scope.dt = new Date(year, month, day);
   		};
 
-  		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  		$scope.setDate2 = function(year, month, day) {
+  		  $scope.dt2 = new Date(year, month, day);
+  		};
+
+  		$scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd-MMMM-yyyy', 'shortDate'];
   		$scope.format = $scope.formats[0];
  		$scope.altInputFormats = ['M!/d!/yyyy'];
 
@@ -162,3 +172,26 @@ datePicker.directive('modal', function(){
       }
 	}
 });
+
+datePicker.factory('mysqlAPI', function($http){
+	return {
+		 	get : function(query) {
+		 		console.log("Query ", query);
+		 		return $http.get('/tssg_meters/' + query)
+   								.then(function(response) {
+   									return response.data;
+   								})
+    		    
+        	}
+		}
+})
+
+
+
+
+
+
+
+
+
+

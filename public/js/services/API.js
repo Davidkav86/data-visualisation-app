@@ -20,8 +20,7 @@ var app = angular.module('appController', []);
 			},
 			delete : function(id) {
 				return $http.delete('/api/columns/' + id)
-                        .success(function(data) {
-                              console.log("success bitch")  
+                        .success(function(data) { 
                         })
                         .error(function(data) {
                                 console.log('Error: ' + data);

@@ -1,0 +1,26 @@
+var app = angular.module('datePicker', []);
+
+	app.factory('MySQLFactory', function(){
+    var mysql = require('mysql');
+		return {
+		 	get : function() {
+        var connection = mysql.createConnection({
+                      host     : 'localhost',
+                      user     : 'root',
+                      password : 'secret',
+                      database : 'tssg_meters'
+                });
+        
+                connection.connect(function(err) {
+                    if(err){
+                      console.error('error connecting: ' + err.stack);
+                      return;
+                    }
+                    console.log('Factory connected as id ' + connection.threadId);
+                });
+        
+                return connection;
+        
+        }
+		}
+	});

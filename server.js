@@ -12,8 +12,32 @@
     var mysql = require('mysql');
 
 
-    // mysql connection
-    require('./app/mysqlConnect.js')(mysql);
+    // ------------ mysql connection ----------------------
+    require('./app/mysqlConnect.js')(app, mysql);
+
+    var connection = mysql.createConnection({
+      host     : 'localhost',
+      user     : 'root',
+      password : 'secret',
+      database : 'tssg_meters'
+    });
+
+    connection.connect(function(err) {
+        if(err){
+            console.error('error connecting: ' + err.stack);
+            return;
+        }
+        console.log('connected as id ' + connection.threadId);
+    });
+
+    app.get('/tssg_meters/:query', function (req, res){
+        connection.query(req.params.query, function(err, rows, fields) {
+        if (err) throw err;
+        res.send(rows);
+    });
+    //=======================================================
+
+    });
 
     // configuration =================
      
@@ -35,6 +59,8 @@
     app.get('*', function(req, res) {
         res.sendfile('./public/index.html'); 
     });
+
+
     // listen (start app with node server.js) ======================================
     app.listen(8080);
     console.log("Data Visualisation App - listening on port 8080");

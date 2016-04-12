@@ -44,6 +44,8 @@
     <script src="js/services/holder.js"></script> -->
    <!-- <script src="/js/services/dataPersistence.js"></script>  -->
 
+   <!-- <script src="js/services/MySQL.js"></script> -->
+
    <!-- Directives -->
    <script src="js/directives/populateHomePage.js"></script>
    <script src="/js/directives/scatterPlotDirective.js"></script> 
@@ -131,35 +133,57 @@
 
 <div ng-controller="date_picker" class="container">
   <button ng-click="toggleModal()" class="btn btn-default">Open modal</button>
+
   <modal title="Search Historical Data" visible="showModal">
     <div class="row">
       <div class="col-md-6">
         <p class="input-group">
+          Date from:
           <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="calBtn" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>
 
       <div class="col-md-6">
         <p class="input-group">
+          Date to:
           <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="calBtn" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div><br>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
-      </div> <br></br>
+        <p class="input-group">
+          Time from:
+          <input type="time" ng-model="timeFrom">
+        </p>
+      </div>
+
       <div class="col-md-6">
-        <button type="button" class="btn clearButton" ng-click="clear()">Clear</button>
+        <p class="input-group">
+          Time to:
+          <input type="time" ng-model="timeTo">
+        </p>
+      </div><br>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Format: </label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+      </div> <br></br><br>
+      <div class="col-md-6">
+        <button type="button" class="clearButton" ng-click="clear()">Clear</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="subButton" ng-click="setDates(dt,dt2,timeFrom,timeTo)">Submit</button>
       </div>
     </div>
   </modal>
+
 </div>
    <!-- </div> -->
    <!-- <div class="fullLength" id="area-chart">  
