@@ -38,7 +38,9 @@ angular.module('appController')
             return y(d.close); 
           });
 
-			var svg = d3.select("body").select("#area-chart").append("svg")
+           // selectAll("#area-chart") was select("#area-chart") which was only using the first area-chart id
+
+			var svg = d3.select("body").selectAll("#area-chart").append("svg")
     			.attr("width", width + margin.left + margin.right)
     			.attr("height", height + margin.top + margin.bottom)
   				.append("g")
@@ -54,6 +56,8 @@ angular.module('appController')
       //           .style("stroke", bordercolor)
       //           .style("fill", "none")
       //           .style("stroke-width", border);
+
+      // ------------ Data Entry ------------------
 
 			d3.tsv("js/directives/data.tsv", function(error, data) {
   				if (error) 
@@ -90,17 +94,6 @@ angular.module('appController')
       			.attr("dy", ".71em")
       			.style("text-anchor", "end");
 
-            // // Create X axis. Call it after everything else is rendered
-            // svg.append("g")
-            //     .attr("class", "axis")
-            //     .attr("transform", "translate(0," + (height - 30) + ")")
-            //     .call(xAxis);
-
-            // //Create Y axis
-            // svg.append("g")
-            //     .attr("class", "axis")
-            //     .attr("transform", "translate(" + 30 + ",0)")
-            //     .call(yAxis);
 			});
 
         }

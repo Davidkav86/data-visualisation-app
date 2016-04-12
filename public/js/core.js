@@ -1,3 +1,8 @@
 //public/core.js
 
-var myApp = angular.module('myApp',['appController','dragController', 'ngRoute']);
+var myApp = angular.module('myApp',
+	['appController',
+	'datePicker',
+	'ngRoute',
+	'ui.bootstrap'
+	]);

@@ -16,6 +16,10 @@ i {
     height: auto;
     width: auto;
 }
+
+h4 {
+     text-decoration: underline;
+}
 /* Charts */
 
 .fullLength {
@@ -168,3 +172,50 @@ nav li:last-child a {
     position: fixed;
     left: 0px;
 }
+
+/*--------- date picker -------------*/
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+.datepicker {
+    width: 1200;
+    height: 200px;
+    margin-right: 50px;
+    padding: 10px;
+    position:absolute
+    bottom:30px;
+    /*margin-left: 50px;*/
+    background-color: #4dd2ff;
+}
+
+.dateButton {
+    background-color: #ffffff; /* Green */
+    border: 0.5px;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 10px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+.clearButton {
+    background-color: red; /* Green */
+    border: 0.5px;
+    color: #ffffff;
+    padding: 20px 38px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+
