@@ -4,6 +4,33 @@ var app = angular.module('appController', []);
 
 	app.controller('controller', function($scope, $http, $q, $route, $window, API, mysqlAPI){
 
+        //var vm = this;
+
+        // $scope.dataInjection = {}
+        // $scope.accessor = {};
+        // $scope.callDirective = function () {
+        //     console.log("outside");
+        //     if ($scope.accessor.getData) {
+        //         console.log("inside");
+        //         var data = $scope.accessor.getData();
+        //         console.log("In the if part of the method with data",data);
+        //     }
+        // };
+
+        // $scope.clicked = false;
+        // $scope.click = function() {
+        //     $scope.clicked = !$scope.clicked;
+        // };
+
+        // $scope.clicked = false;
+        // // $scope.clicked1 = false;
+        // $scope.click = function() {
+        //     console.log("Clicked b",$scope.clicked)
+        //     // $scope.clicked1 = !$scope.clicked1;
+        //     $scope.clicked = !$scope.clicked;
+        //     console.log("Clicked a",$scope.clicked)
+        // };
+
         // retrieve the data that is used to load the page 		
     	var render = API.get();
     	render.then(function(result) {  
@@ -32,9 +59,9 @@ var app = angular.module('appController', []);
 		$scope.content = []; 
 		
 
-        $scope.doSomething = function(){
-      		$scope.message = "Clicked!";
-    	};
+     //    $scope.doSomething = function(){
+     //  		$scope.message = "Clicked!";
+    	// };
 
     	$scope.reload = function(){
     		console.log("RELOAD")
@@ -73,13 +100,26 @@ var app = angular.module('appController', []);
 
 	app.factory('counter', function(){
 		var counter = 0;
+        var test = false;
 		return {
 		 	get : function() {
 					return counter 
 				},
 			add : function() {
 				counter += 1;
-			}		
+			    },
+            set : function() {
+                counter = 0;
+            },
+            test : function(){
+                return test
+            },
+            setTestTrue : function(){
+                test = true;
+            },
+            setTestFalse : function(){
+                test = false;
+            }		
 		}
 	})
 

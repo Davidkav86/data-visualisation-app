@@ -2,15 +2,31 @@
 
 var datePicker = angular.module('datePicker', [])
 
-	datePicker.controller('date_picker', function($scope, mysqlAPI){
+	datePicker.controller('date_picker', function($scope, $window, mysqlAPI, counter){
 
 		// var chap = 'select meter_id, meter_reading_time, real_energy_consumption from meters_data where meter_reading_time between "2015-02-02 10:00:00" and "2015-05-02 10:00:00" and meter_id=82;';
 		// var test = mysqlAPI.get(chap);
 		// test.then(function(result) {
 		// 	console.log("Result", result[0].meter_id);
 		// });
-		
+		// var vm = this;
 
+		// $scope.dataInjection = {}
+		// vm.accessor = {};
+  //   	vm.callDirective = function () {
+  //       	if (vm.accessor.getData) {
+  //       	    var data = vm.accessor.getData();
+  //       	    console.log("In the if part of the method with data",data);
+  //       	}
+  //   	};
+  		// function for calling the two directives required to repopulate the page with new data
+  		$scope.clicked = false;
+        $scope.click = function() {
+        	// $scope.clicked1 = !$scope.clicked1;
+            $scope.clicked = !$scope.clicked;
+        };
+		
+		// function for showing the date picker
 		$scope.showModal = false;
     	$scope.toggleModal = function(){
         	$scope.showModal = !$scope.showModal;
@@ -21,7 +37,18 @@ var datePicker = angular.module('datePicker', [])
 			console.log("Date 2", dt2);
 			console.log("From", timeFrom);
 			console.log("To", timeTo);
-
+			// set all the values to a service so they can be used in the directive
+			mysqlAPI.setDate1(dt);
+			mysqlAPI.setDate2(dt2);
+			mysqlAPI.setTime1(timeFrom);
+			mysqlAPI.setTime2(timeTo);
+			mysqlAPI.setInput(true);
+		
+			$scope.clicked = !$scope.clicked;
+			console.log("Click", $scope.clicked)
+			// close the popup box
+			$scope.showModal = false;
+  			// $scope.clicked1 = false;
 		}
 
 		$scope.today = function() {
@@ -174,15 +201,30 @@ datePicker.directive('modal', function(){
 });
 
 datePicker.factory('mysqlAPI', function($http){
+
+	var date1 = new Date(2015,2,2);
+	var date2 = new Date(2015,5,2);
+	var time1 = new Date(2015,2,2);
+	var time2 = new Date(2015,2,2);
+	var _input = false;
 	return {
 		 	get : function(query) {
-		 		console.log("Query ", query);
+		 		// console.log("Query ", query);
 		 		return $http.get('/tssg_meters/' + query)
    								.then(function(response) {
    									return response.data;
-   								})
-    		    
-        	}
+   								})    
+        	},	
+        	setDate1 : function (d1){ date1 = d1;},
+        	getDate1 : function(){return date1;},
+        	setDate2 : function (d2){ date2 = d2;},
+        	getDate2 : function(){return date2;},
+        	setTime1 : function (t1){if(t1){time1 = t1;}},
+        	getTime1 : function(){return time1;},
+        	setTime2 : function (t2){if(t2){time1 = t2;}},
+        	getTime2 : function(){return time2;},
+        	setInput : function(input){_input = input},
+        	getInput : function(){return _input}
 		}
 })
 
